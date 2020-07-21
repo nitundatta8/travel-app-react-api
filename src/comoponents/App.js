@@ -2,7 +2,9 @@ import React from 'react';
 import LoginForm from './LoginForm';
 import Header from './Header';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
-import Destination from './Destination';
+import DestinationList from './DestinationList';
+import Country from './Country'
+import CountryDetails from './CountryDetails';
 
 function App() {
   return (
@@ -14,7 +16,13 @@ function App() {
           {/* <Redirect from='/signin/' to="" /> */}
         </Route>
         <Route path="/destination">
-          <Destination />
+          <DestinationList />
+        </Route>
+        <Route path="/country/:countryName">
+          <Country />
+        </Route>
+        <Route path="/countryDetails/:cityId">
+          <CountryDetails />
         </Route>
       </Switch>
     </Router>

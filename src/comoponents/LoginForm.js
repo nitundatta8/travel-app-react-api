@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+//import { useHistory } from 'react-router-dom';
 import { login } from '../actions/Login';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -10,7 +10,7 @@ function LoginForm(props) {
 
 
   const dispatch = useDispatch();
-  const history = useHistory();
+  //const history = useHistory();
   const loginStatus = useSelector(state => state.user.login);
   const authenticationFail = useSelector(state => state.user.authenticationFail);
   return (

@@ -1,6 +1,6 @@
 import * as c from '../actions/ActionsType';
 import { login } from '../actions/Login';
-//import * as c from './../actions/ActionType';
+
 
 let initialState = {
   isLoading: false,
