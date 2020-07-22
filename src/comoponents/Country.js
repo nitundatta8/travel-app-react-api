@@ -27,10 +27,8 @@ const Country = () => {
       {console.log("inside fragment")}
       <h3>Country  Name:  {countryName}</h3>
       <ul>
-        {/* {<Link to={`/users/${place.id}`} activeClassName="active">{place.name}<li>{place.city}</li></Link>} */}
         {/* {places.map((place) => { return <li>{place.city}</li> })} */}
-        {/* {places.map(place => <Link to={`/countryDetails/${place.placeId}`} activeClassName="active">{place.name}<li>{place.city}</li></Link>)} */}
-        {places.map(place => <li><Link to={`/countryDetails/${place.placeId}`} activeClassName="active">{place.name} {place.city}</Link></li>)}
+        {places.map(place => <li>City Name<Link to={`/countryDetails/${place.placeId}`} activeClassName="active">{place.name} {place.city}</Link></li>)}
       </ul>
 
     </React.Fragment>

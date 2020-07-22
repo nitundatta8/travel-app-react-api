@@ -5,26 +5,33 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-d
 import DestinationList from './DestinationList';
 import Country from './Country'
 import CountryDetails from './CountryDetails';
+import './App.css';
 
 function App() {
   return (
     <Router>
       <Header />
-      <Switch>
-        <Route path="/signin">
-          <LoginForm />
-          {/* <Redirect from='/signin/' to="" /> */}
-        </Route>
-        <Route path="/destination">
-          <DestinationList />
-        </Route>
-        <Route path="/country/:countryName">
-          <Country />
-        </Route>
-        <Route path="/countryDetails/:cityId">
-          <CountryDetails />
-        </Route>
-      </Switch>
+      <div className='App'>
+        <Switch>
+          <Route path="/signin">
+            <LoginForm />
+            {/* <Redirect from='/signin/' to="" /> */}
+          </Route>
+          <Route path="/destination">
+            <DestinationList />
+          </Route>
+          <Route path="/country/:countryName">
+            <Country />
+          </Route>
+          <Route path="/countryDetails/:cityId">
+            <CountryDetails />
+          </Route>
+          <Route path="/">
+            <DestinationList />
+          </Route>
+        </Switch>
+      </div>
+
     </Router>
   );
 }

@@ -31,3 +31,27 @@ export const loadDataByCountryDetails = (cityDetailsData, cityId) => {
     });
 
 };
+
+//review post API call 
+export const postReview = (reviewData, review, placeId, token) => {
+
+  const requestOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + token },
+    body: JSON.stringify({ "reviewText": review, "placeId": placeId })
+  };
+
+
+  return fetch(`http://localhost:5009/api/Reviews`, requestOptions)
+    .then(response => response.json())
+    .then(
+      (jsonifiedResponse) => {
+        console.log("jsonifiedResponse  ");
+        console.log(jsonifiedResponse);
+        reviewData(jsonifiedResponse);
+      })
+    .catch((error) => {
+      reviewData(error);
+    });
+
+};

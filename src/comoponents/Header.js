@@ -8,17 +8,21 @@ function Header() {
     margin: '5px',
     backgroundColor: 'gray',
     fontSize: '30px',
-    color: 'white',
+    color: 'black',
     width: '100%',
     borderBottom: '5px solid black',
     padding: '1rem'
   }
+  const link = {
+
+    color: 'white'
+  }
   return (
-    <nav style={styleHeader}>
+    <div style={styleHeader}>
       <h3>Travel App</h3>
-      <Link to="/signin">Sign In</Link>
-      <Link to="/">Home</Link>
-    </nav>
+      <Link style={link} to="/signin">Sign In</Link>
+      <Link style={link} to="/">Home</Link>
+    </div>
   )
 };
 export default Header;

@@ -18,9 +18,11 @@ function DestinationList() {
   return (
 
     <React.Fragment>
+      <h4>Select Country</h4>
+
       <DropdownButton
         alignRight
-        title="Dropdown right"
+        title="Country"
         id="dropdown-menu-align-right"
         onSelect={handleSelect}
       >
@@ -29,7 +31,7 @@ function DestinationList() {
         <Dropdown.Item eventKey="England">England</Dropdown.Item>
 
       </DropdownButton>
-      <h4>You selected {value}</h4>
+
     </React.Fragment>
   );
 
