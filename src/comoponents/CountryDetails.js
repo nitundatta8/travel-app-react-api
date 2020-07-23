@@ -56,16 +56,11 @@ const CountryDetails = () => {
       <h3>City Rating : {city.rating} </h3>
       <h4>Reviews</h4>
       {
-
-        city.reviews?.map(review => <li>{review.reviewText}
-
-          {review.user.id === userId ? <a href="#">  Edit </a> : ''}
-        </li>)
-
+        city.reviews?.map(review =>
+          <li>{review.reviewText}
+            {review.user.id === userId ? <a href="#">  Edit </a> : ''}
+          </li>)
       }
-
-
-
 
       <h5>Share your reviews</h5>
       <form onSubmit={doComment.bind(this)}>
@@ -77,9 +72,6 @@ const CountryDetails = () => {
 
     </React.Fragment>
   );
-
-
-
 };
 
 export default CountryDetails;

@@ -61,7 +61,7 @@ export const loadReviewData = (cityName, token) => {
 
 export const loadCityData = (cityDetailsData, cityId, token) => {
   console.log("async");
-  let promise = loadDataByCountryDetails(cityDetailsData, cityId);
+  const promise = loadDataByCountryDetails(cityDetailsData, cityId);
 
   console.log("token:" + token)
   promise.then(cityData =>
