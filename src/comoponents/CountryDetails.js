@@ -22,14 +22,12 @@ const CountryDetails = () => {
     setState(data);
 
   }
+  //reviewData callback for Review 
   const reviewData = (data) => {
-    console.log(" post review....");
-    // console.log(data);
     loadCityData(cityDetailsData, cityId, token);
 
   };
   const doComment = (event) => {
-
     event.preventDefault();
     if (token == null) {
       console.log("signin  " + location.pathname);

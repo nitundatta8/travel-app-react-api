@@ -8,10 +8,10 @@ import { useHistory } from 'react-router-dom';
 
 function DestinationList() {
   const history = useHistory();
-  const [value, setValue] = useState('');
+  //const [value, setValue] = useState('');
   const handleSelect = (e) => {
-    console.log("this country" + e);
-    setValue(e);
+    //console.log("this country" + e);
+    //setValue(e);
     history.push("/country/" + e);
   }
 
@@ -35,9 +35,6 @@ function DestinationList() {
     </React.Fragment>
   );
 
-  // function loadData() {
-  //   console.log("Calling api")
-  // }
 
 };
 export default DestinationList;

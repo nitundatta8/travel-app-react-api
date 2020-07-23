@@ -16,10 +16,11 @@ export const loadDataByCountry = (placeData, country) => {
 };
 
 //country deatails API call 
-export const loadDataByCountryDetails = (cityDetailsData, cityId) => {
-  console.log("City id ---  " + cityId);
+// export const loadDataByCountryDetails = (cityDetailsData, placeId) => {
+export const loadDataByCountryDetails = (placeId) => {
+  console.log("City id ---  " + placeId);
 
-  return fetch(`http://localhost:5009/api/Places/${cityId}`)
+  return fetch(`http://localhost:5009/api/Places/${placeId}`)
     .then(response => response.json())
     .then(
       (jsonifiedResponse) => {
@@ -58,18 +59,17 @@ export const loadReviewData = (cityName, token) => {
 
 };
 
-
+// display city review and rating, other else
 export const loadCityData = (cityDetailsData, cityId, token) => {
   console.log("async");
-  const promise = loadDataByCountryDetails(cityDetailsData, cityId);
+  //const promise = loadDataByCountryDetails(cityDetailsData, cityId);
+  const promise = loadDataByCountryDetails(cityId);
 
   console.log("token:" + token)
-  promise.then(cityData =>
-    loadReviewData(cityData.city, token).then(
-      reviewData => {
-        cityDetailsData(Object.assign({}, cityData, { reviews: reviewData }));
-      }
-    )
+  promise.then(cityData => loadReviewData(cityData.city, token).then(reviewData => {
+    cityDetailsData(Object.assign({}, cityData, { reviews: reviewData }));
+  }
+  )
   )
 
 
