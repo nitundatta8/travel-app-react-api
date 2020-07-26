@@ -15,27 +15,7 @@ export const loadDataByCountry = (placeData, country) => {
 
 };
 
-//country deatails API call 
-// export const loadDataByCountryDetails = (cityDetailsData, placeId) => {
-export const loadDataByCountryDetails = (placeId) => {
-  console.log("City id ---  " + placeId);
-
-  return fetch(`http://localhost:5009/api/Places/${placeId}`)
-    .then(response => response.json())
-    .then(
-      (jsonifiedResponse) => {
-        // console.log("jsonifiedResponse  ");
-        // console.log(jsonifiedResponse);
-        //cityDetailsData(jsonifiedResponse);
-        return jsonifiedResponse;
-      })
-    .catch((error) => {
-      return error
-    });
-
-};
-
-// get review call
+// get review api call
 
 export const loadReviewData = (cityName, token) => {
   console.log("City name ---  " + cityName);
@@ -59,21 +39,45 @@ export const loadReviewData = (cityName, token) => {
 
 };
 
+//get reviews without user info ---- api call
+const getReviewApi = (placeId) => {
+  console.log("reviews without user info    " + placeId);
+  return fetch(`http://localhost:5009/api/Places/${placeId}`)
+    .then(response => response.json())
+    .then(
+      (jsonifiedResponse) => {
+
+        return jsonifiedResponse;
+      })
+    .catch((error) => {
+      return error
+    });
+};
+
+// get place reviews with user info ---- api call
+
+const getUserInfo = (placeName, token) => {
+  const requestOptions = {
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + token }
+  };
+
+  return fetch(`http://localhost:5009/api/Reviews/getreviews?city=${placeName}`, requestOptions)
+    .then(response => response.json())
+    .then(jsonifiedResponse => {
+      return jsonifiedResponse
+    })
+    .catch((error) => {
+      return error
+    });
+};
+
 // display city review and rating, other else
-export const loadCityData = (cityDetailsData, cityId, token) => {
-  console.log("async");
-  //const promise = loadDataByCountryDetails(cityDetailsData, cityId);
-  const promise = loadDataByCountryDetails(cityId);
+export const getPlaceDetails = (placeData, placeId, token) => {
+  const promise = getReviewApi(placeId);
+  promise.then(placeInfo => getUserInfo(placeInfo.city, token)
+    .then(reviewWithUser => placeData(Object.assign({}, placeInfo, { reviews: reviewWithUser }))))
 
-  console.log("token:" + token)
-  promise.then(cityData => loadReviewData(cityData.city, token).then(reviewData => {
-    cityDetailsData(Object.assign({}, cityData, { reviews: reviewData }));
-  }
-  )
-  )
-
-
-}
+};
 
 
 

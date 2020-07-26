@@ -6,6 +6,7 @@ import DestinationList from './DestinationList';
 import Country from './Country'
 import CountryDetails from './CountryDetails';
 import './App.css';
+import EditReview from './EditReview';
 
 function App() {
   return (
@@ -23,8 +24,11 @@ function App() {
           <Route path="/country/:countryName">
             <Country />
           </Route>
-          <Route path="/countryDetails/:cityId">
+          <Route path="/countryDetails/:placeId">
             <CountryDetails />
+          </Route>
+          <Route path="/editReview/:reviewId">
+            <EditReview />
           </Route>
           <Route path="/">
             <DestinationList />

@@ -1,32 +1,44 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useLocation } from 'react-router';
-import { loadDataByCountryDetails } from './../actions/countryByApi'
-import { useSelector } from 'react-redux';
+import { getPlaceDetails } from './../actions/countryByApi'
+//import { useSelector } from 'react-redux';
 import { useHistory, Redirect } from 'react-router-dom';
-import { postReview, loadCityData } from './../actions/countryByApi'
+import { postReview } from './../actions/countryByApi';
+import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import * as c from '../actions/ActionsType';
 
 
 const CountryDetails = () => {
+  const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
-  const { cityId } = useParams();
-  const [city, setState] = useState({});
+  const { placeId } = useParams();
+  const [city, setCity] = useState({});
   const token = useSelector(state => state.user.userInfo.token);
   const userId = useSelector(state => state.user.userInfo.id);
   const loginStatus = useSelector(state => state.user.login);
 
 
   const cityDetailsData = (data) => {
-    console.log("city data");
-    //  console.log(data.reviews.length);
-    setState(data);
+    console.log("Reviews  ");
+    console.log(data);
+    setCity(data);
+    const action = {
+      type: c.ADD_REVIEW,
+      data
+    }
+    console.log(" Action ");
+    console.log(action);
+    dispatch(action);
+  };
 
-  }
   //reviewData callback for Review 
   const reviewData = (data) => {
-    loadCityData(cityDetailsData, cityId, token);
+    getPlaceDetails(cityDetailsData, placeId, token);
 
   };
+
   const doComment = (event) => {
     event.preventDefault();
     if (token == null) {
@@ -41,22 +53,23 @@ const CountryDetails = () => {
 
   useEffect(() => {
     // Update the document title using the browser API
-    //  loadDataByCountryDetails(cityDetailsData, cityId);
-    loadCityData(cityDetailsData, cityId, token);
-  }, [cityId]);
+
+    getPlaceDetails(cityDetailsData, placeId, token);
+  }, [placeId]);
 
   return (
     <React.Fragment>
 
       {!loginStatus ? <Redirect to={`/signin${location.pathname}`} /> : <h3></h3>}
 
-      <h3>{city.city} Details</h3>
+      <h3> City Name: {city.city} </h3>
       <h3>City Rating : {city.rating} </h3>
       <h4>Reviews</h4>
       {
         city.reviews?.map(review =>
           <li>{review.reviewText}
-            {review.user.id === userId ? <a href="#">  Edit </a> : ''}
+            {/* <Link to={`/countryDetails/${place.placeId}`}><a href="#">  Edit </a></Link> */}
+            {review.user.id === userId ? <Link to={`/editReview/${review.reviewId}`}> Edit </Link> : ''}
           </li>)
       }
 

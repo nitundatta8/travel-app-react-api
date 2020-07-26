@@ -28,7 +28,7 @@ const Country = () => {
       <h3>Country  Name:  {countryName}</h3>
       <ul>
         {/* {places.map((place) => { return <li>{place.city}</li> })} */}
-        {places.map(place => <li>City Name<Link to={`/countryDetails/${place.placeId}`} activeClassName="active">{place.name} {place.city}</Link></li>)}
+        {places.map(place => <li>City<Link to={`/countryDetails/${place.placeId}`} activeClassName="active">{place.name} {place.city}</Link></li>)}
       </ul>
 
     </React.Fragment>
